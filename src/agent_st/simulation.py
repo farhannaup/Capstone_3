@@ -1,8 +1,14 @@
 
 import streamlit as st
 from langchain_core.messages import ToolMessage
-from agent_st.agent import supervisor_agent as agent
+from src.agent_st.agent import supervisor_agent as agent
 from langfuse.langchain import CallbackHandler
+import sys
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.join(BASE_DIR, "..", ".."))
+sys.path.append(PROJECT_ROOT)
 
 langfuse_handler = CallbackHandler()
 
