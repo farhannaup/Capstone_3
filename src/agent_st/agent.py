@@ -25,9 +25,9 @@ def get_vector_store():
     )
 
     embeddings = OpenAIEmbeddings(
-        model=os.getenv("EMBEDDING_MODEL"),
-        openai_api_key=os.getenv("OPENAI_API_KEY"),
+    model=os.getenv("EMBEDDING_MODEL"),
     )
+
 
     return QdrantVectorStore(
         client=client,
@@ -38,7 +38,6 @@ def get_vector_store():
 llm = ChatOpenAI(
     model=os.getenv("LLM_MODEL"),
     temperature=0,
-    openai_api_key=os.getenv("OPENAI_API_KEY"),
 )
 
 
