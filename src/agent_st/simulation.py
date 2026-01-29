@@ -42,7 +42,7 @@ def send_chat(question: str, history: str) -> dict:
     }
     return response
 
-st.title("Chatbot HR ")
+st.title("IMDB Chatbot 🎬")
 
 # Initialize chat history
 if "messages" not in st.session_state:
@@ -54,7 +54,7 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 # Accept user input
-if prompt := st.chat_input("Ask me anything about Resumes!"):
+if prompt := st.chat_input("Ask me anything about Movies!"):
     messages_history = st.session_state.get("messages", [])[-20:]
     history = "\n".join([f'{msg["role"]}: {msg["content"]}' for msg in messages_history]) or " "
 

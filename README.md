@@ -16,7 +16,7 @@
 
 ## Contoh query
 
-1. `find HR managers`
-2. `Cari kandidat untuk posisi HR Manager`
-3. `Kandidat di Jakarta area`
-4. `Bandingkan technical capabilities dari top 3 candidates`
+1. `Rekomendasikan film drama dengan rating IMDB di atas 8`
+2. `Cari film yang disutradarai Christopher Nolan`
+3. `Film thriller terbaik tahun 2010-an apa saja?`
+4. `Film dengan genre Action dan IMDB rating tinggi`
