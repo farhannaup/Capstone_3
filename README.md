@@ -9,11 +9,6 @@
 
 `poetry run streamlit src/agent_st/simulation.py`
 
-## Flow
-
-...
-![Flow diagram agent](flow.png)
-
 ## Contoh query
 
 1. `Rekomendasikan film drama dengan rating IMDB di atas 8`
