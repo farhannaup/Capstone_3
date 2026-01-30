@@ -3,6 +3,10 @@ import streamlit as st
 from langchain_core.messages import ToolMessage
 from agent import supervisor_agent as agent
 from langfuse.langchain import CallbackHandler
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 langfuse_handler = CallbackHandler()
 
