@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 
 from langchain_core.documents import Document
 from langchain_openai import OpenAIEmbeddings
-from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_qdrant import QdrantVectorStore
 from qdrant_client import QdrantClient
 from qdrant_client.models import VectorParams, Distance
@@ -37,15 +36,6 @@ embeddings = OpenAIEmbeddings(
 )
 
 # =====================
-# TEXT SPLITTER (CHUNKING)
-# =====================
-
-text_splitter = RecursiveCharacterTextSplitter(
-    chunk_size=500,
-    chunk_overlap=80,
-)
-
-# =====================
 # LOAD & CHUNK DATA
 # =====================
 
@@ -60,10 +50,8 @@ def load_imdb(csv_path: str, limit: int = 200) -> list[Document]:
         if not overview:
             continue
 
-        chunks = text_splitter.split_text(overview)
-
-        for chunk_id, chunk in enumerate(chunks):
-            content = f"""
+        
+        content = f"""
 Title: {row.get('Series_Title')}
 Year: {row.get('Released_Year')}
 Genre: {row.get('Genre')}
@@ -71,24 +59,23 @@ Director: {row.get('Director')}
 IMDB Rating: {row.get('IMDB_Rating')}
 
 Overview:
-{chunk}
+{overview}
 """.strip()
 
-            documents.append(
-                Document(
-                    page_content=content,
-                    metadata={
-                        "title": row.get("Series_Title"),
-                        "year": row.get("Released_Year"),
-                        "genre": row.get("Genre"),
-                        "director": row.get("Director"),
-                        "rating": row.get("IMDB_Rating"),
-                        "chunk_id": chunk_id,
-                        "row_index": idx,
-                        "source": "imdb_movies.csv",
-                    },
-                )
+        documents.append(
+            Document(
+                page_content=content,
+                metadata={
+                    "title": row.get("Series_Title"),
+                    "year": row.get("Released_Year"),
+                    "genre": row.get("Genre"),
+                    "director": row.get("Director"),
+                    "rating": row.get("IMDB_Rating"),
+                    "row_index": idx,
+                    "source": "imdb_movies.csv",
+                },
             )
+        )
 
     logging.info(f"Total documents created: {len(documents)}")
     return documents
