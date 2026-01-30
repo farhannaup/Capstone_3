@@ -36,7 +36,7 @@ embeddings = OpenAIEmbeddings(
 )
 
 # =====================
-# LOAD & CHUNK DATA
+# LOAD DATA
 # =====================
 
 def load_imdb(csv_path: str, limit: int = 200) -> list[Document]:
