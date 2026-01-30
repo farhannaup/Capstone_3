@@ -116,7 +116,7 @@ def main():
         ids=[str(uuid4()) for _ in documents],
     )
 
-    logging.info("IMDB ingestion completed successfully.")
+    logging.info("Ingestion completed successfully.")
 
 if __name__ == "__main__":
     main()
