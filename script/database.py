@@ -92,31 +92,25 @@ def main():
         limit=200,
     )
 
-    collection_name = os.getenv("QDRANT_COLLECTION_NAME")
-    collections = [c.name for c in qdrant_client.get_collections().collections]
+   collections = qdrant_client.get_collections().collections
+    collection_names = [col.name for col in collections]
 
-    if collection_name not in collections:
-        logging.info("Creating Qdrant collection...")
+    if not os.getenv("QDRANT_COLLECTION_NAME") in collection_names:
+        logging.info(f"Creating collection {os.getenv('QDRANT_COLLECTION_NAME')}...")
         qdrant_client.create_collection(
-            collection_name=collection_name,
-            vectors_config=VectorParams(
-                size=1536,
-                distance=Distance.COSINE,
-            ),
+            collection_name=os.getenv("QDRANT_COLLECTION_NAME"),
+            vectors_config=VectorParams(size=1536, distance=Distance.COSINE),
         )
-
+    
+    uuids = [str(uuid4()) for _ in range(len(documents))]
+    logging.info(f"Adding {len(documents)} documents to the vector store...")
     vector_store = QdrantVectorStore(
         client=qdrant_client,
-        collection_name=collection_name,
+        collection_name=os.getenv("QDRANT_COLLECTION_NAME"),
         embedding=embeddings,
     )
-
-    vector_store.add_documents(
-        documents=documents,
-        ids=[str(uuid4()) for _ in documents],
-    )
-
-    logging.info("Ingestion completed successfully.")
+    vector_store.add_documents(documents=documents, ids=uuids)
+    logging.info("Documents added successfully.")
 
 if __name__ == "__main__":
     main()
