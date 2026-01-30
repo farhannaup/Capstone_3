@@ -11,7 +11,7 @@
 
 ## Contoh query
 
-1. `Rekomendasikan film drama dengan rating IMDB di atas 8`
-2. `Cari film yang disutradarai Christopher Nolan`
-3. `Film thriller terbaik tahun 2010-an apa saja?`
-4. `Film dengan genre Action dan IMDB rating tinggi`
+1. `Apa perbedaan Forrest Gump dan The Shawshank Redemption?`
+2. `Analisis kenapa The Shawshank Redemption dianggap film terbaik`
+3. `Kenapa film Inception disukai banyak orang?`
+4. `Jelaskan tema utama dari film The Godfather`
