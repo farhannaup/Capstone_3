@@ -92,11 +92,7 @@ def main():
         limit=200,
     )
 
-<<<<<<< HEAD
     collections = qdrant_client.get_collections().collections
-=======
-   collections = qdrant_client.get_collections().collections
->>>>>>> 41d5a33a1ab3e4912a6d372a12becfbdcf69edb6
     collection_names = [col.name for col in collections]
 
     if not os.getenv("QDRANT_COLLECTION_NAME") in collection_names:
